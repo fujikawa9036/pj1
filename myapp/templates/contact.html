@@ -1,0 +1,46 @@
+{% block content %}
+<div class="container-fluid" style="margin-top: 30px;">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-header">お問い合わせ</div>
+        <div class="card-body">
+          <div class="card-block"> 
+            <form class="my-form" action="" method="POST">
+              <div class="row">
+                <div class="form-group col-md-11">
+                  <label for="id_email">お名前</label>
+                  {{ form.name }}
+                </div>
+                <div class="form-group col-md-11 pb-0">
+                  <label for="id_email">メールアドレス</label>
+                  {{ form.email }}
+                </div>
+                <div class="form-group col-md-11" style="height: 1em;">
+                  <ul class="errorlist m-0 p-0">
+                  <li>
+                  {% if form.email.errors %}
+                      {% for error in form.email.errors %}
+                          {{ error|escape }}
+                      {% endfor %}
+                  {% endif %}
+                  </li>
+                  </ul>
+                </div>
+                <div class="form-group col-md-11">
+                  <label for="id_email">メッセージ</label>
+                  {{ form.message }}
+                </div>
+                <div class="form-group col-md-11">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-block btn-outline-primary">送信</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div><!-- end card-body-->
+      </div><!-- end card-->
+    </div>
+  </div><!-- end row -->
+</div><!-- end container-fluid-->
+{% endblock %}

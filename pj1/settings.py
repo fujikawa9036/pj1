@@ -121,3 +121,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'myapp.User'
+
+LOGIN_URL = "myapp:login"  # ログインするページ。デフォルトにするなら"/admin/login/"等も
+LOGIN_REDIRECT_URL = 'myapp:index'  # ログインページに直接飛んだとき、ログイン完了後のリダイレクト先
+ 
+# メールを実際に送らず、コンソール画面へ表示する
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True
