@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
 from json import JSONEncoder
 from uuid import UUID
+from uuid import uuid4
 
 JSONEncoder_olddefault = JSONEncoder.default
 
@@ -53,7 +54,7 @@ class UserManager(BaseUserManager):
   
 class User(AbstractBaseUser, PermissionsMixin):
     """カスタムユーザーモデル."""
-    uuid = models.UUIDField(default=uuid_lib.uuid4,
+    uuid = models.UUIDField(default=uuid4,
                             primary_key=True, editable=False)
  
     email = models.EmailField(_('email address'), unique=True)
