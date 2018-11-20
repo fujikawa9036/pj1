@@ -26,7 +26,7 @@ def index(request):
   }
   return render(request, 'index.html', context)
  
- def login(request):
+def login(request):
     context = {
         'template_name': 'login.html',
         'authentication_form': LoginForm
