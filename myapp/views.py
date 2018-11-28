@@ -15,7 +15,9 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.contrib.auth import login as auth_login
-from users.backends import EmailModelBackend
+from django.contrib.auth.backends import ModelBackend
+from django.views.generic import FormView, TemplateView
+from django.conf import settings
  
 User = get_user_model()
  
@@ -48,8 +50,7 @@ def regist(request):
   }
   return render(request, 'regist.html', context)
  
- 
-＠require_POST
+@require_POST
 def regist_save(request):
     form = RegisterForm(request.POST)
     if form.is_valid():
@@ -61,7 +62,7 @@ def regist_save(request):
     }
     return render(request, 'regist.html', context)
  
-class contact(generic.FormView):
+class contact(FormView):
     """お問い合わせフォームページ"""
  
     template_name = 'contact.html'
@@ -87,7 +88,7 @@ class contact(generic.FormView):
         return super().form_valid(form)
  
  
-class contact_confirm(generic.TemplateView):
+class contact_confirm(TemplateView):
     """お問い合わせフォーム確認ページ"""
  
     template_name = 'contact_confirm.html'
@@ -99,7 +100,7 @@ class contact_confirm(generic.TemplateView):
         return context
  
  
-class contact_send(generic.FormView):
+class contact_send(FormView):
     """お問い合わせ送信"""
  
     form_class = ContactForm

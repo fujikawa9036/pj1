@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
-from users.models import  User
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm, SetPasswordForm
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
@@ -71,3 +71,6 @@ class ContactForm(forms.Form):
             validate_email(email)
         except ValidationError:
             raise ValidationError("正しいメールアドレスを指定して下さい。")
+
+class UserPasswordChangeForm(PasswordChangeForm):
+    pass
